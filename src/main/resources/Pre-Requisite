@@ -1,0 +1,13 @@
+ODBC - Independent connector 
+JDBC - Mysql connection with SqlDeveloper/Eclipse 
+	https://oracle-base.com/articles/mysql/mysql-connections-in-sql-developer#downloads
+
+1. Download the latest "JDBC Driver for MySQL (Connector/J)" from here. 
+   Click the "Download" link next to the "JDBC Driver for MySQL (Connector/J)", then select the platform independent version and download the zip file.
+2. Unzip the connector. The resulting directory contains a "mysql-connector-java-5.1.30-bin.jar" file.
+3. Open SQL Developer and navigate to "Tools > Preferences > Database > Third Party JDBC Driver".
+4. Click the "Add Entry..." button and highlight the "mysql-connector-java-5.1.30-bin.jar" file and click the "Select" button.
+5. Click the "OK" button to exit the "Preferences" dialog.
+6. When you create a new connection, you will notice a "MySQL" tab has now appeared. Enter the connection details and test the connection.
+	
+Hibernate 4.0	

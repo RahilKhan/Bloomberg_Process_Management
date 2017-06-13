@@ -1,0 +1,83 @@
+Feb 26, 2017 3:33:47 PM org.apache.tomcat.util.digester.SetPropertiesRule begin
+WARNING: [SetPropertiesRule]{Server/Service/Engine/Host/Context} Setting property 'source' to 'org.eclipse.jst.j2ee.server:manageBudget' did not find a matching property.
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/8.0.39
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Nov 9 2016 08:48:39 UTC
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         8.0.39.0
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Linux
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            4.9.9-200.fc25.x86_64
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          amd64
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.121-1.b14.fc25.x86_64/jre
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_121-b14
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:45049
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=/root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=/root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dwtp.deploy=/root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/wtpwebapps
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.endorsed.dirs=/root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/endorsed
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dfile.encoding=UTF-8
+Feb 26, 2017 3:33:47 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the 
+java.library.path: /usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+Feb 26, 2017 3:33:47 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-nio-8080"]
+Feb 26, 2017 3:33:47 PM org.apache.tomcat.util.net.NioSelectorPool getSharedSelector
+INFO: Using a shared selector for servlet write/read
+Feb 26, 2017 3:33:47 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-nio-8009"]
+Feb 26, 2017 3:33:47 PM org.apache.tomcat.util.net.NioSelectorPool getSharedSelector
+INFO: Using a shared selector for servlet write/read
+Feb 26, 2017 3:33:47 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1239 ms
+Feb 26, 2017 3:33:47 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Feb 26, 2017 3:33:47 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/8.0.39
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/examples
+Feb 26, 2017 3:33:48 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Feb 26, 2017 3:33:48 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/examples has finished in 418 ms
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/host-manager
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/host-manager has finished in 40 ms
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/ROOT
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/ROOT has finished in 33 ms
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/manager
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/manager has finished in 36 ms
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/docs
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory /root/mnt/software/server/apache-tomcat-8.0.39/apache-tomcat-8.0.39/webapps/docs has finished in 21 ms
+Feb 26, 2017 3:33:48 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-8080"]
+Feb 26, 2017 3:33:48 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-nio-8009"]
+Feb 26, 2017 3:33:48 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1177 ms
