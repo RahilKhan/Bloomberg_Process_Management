@@ -119,6 +119,22 @@
 	</div>
 	<!-- /.row -->
 	
+	<!--BEGIN : File Upload -->
+	<div class="container">
+	   <div class="row">
+	       <div class="col-md-8">
+	           <form method="post" action='fileUpload/upload' enctype="multipart/form-data">
+	               <div class="form-group">
+	                   <label for="file1">File Input 1</label>
+	                   <input type="file" name="file" id="file1">
+	               </div>
+	               <button type="submit" class="btn btn-success">Submit</button>
+	           </form>
+	       </div>
+	   </div>
+	</div>
+	<!--BEGIN : File Upload -->
+	
 	<!-- Modal -->
 	<div class="modal fade" id="dialogForFileImport" role="dialog"
 		aria-labelledby="dialogForFileImportModalLabel" tabindex="-1">

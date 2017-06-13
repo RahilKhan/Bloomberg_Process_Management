@@ -27,21 +27,6 @@ public class DashboardController {
 	DashboardServiceInf dashboardService; 
 	
 	/**
-	@RequestMapping(value = "/getDashboardDetails1", method = RequestMethod.GET)
-    public ResponseEntity<List<DashboardBean>> getDashBoardDetails() {
-    	System.out.println("Dashboardcontroller : getDashBoardDetails");
-    	String userId ="rahil";
-    	List<DashboardBean> dashboardBeanList = dashboardService.getDashBoardDetails(userId);
-        if(dashboardBeanList.isEmpty()){
-            return new ResponseEntity<List<DashboardBean>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-        }
-    	
-    	return new ResponseEntity<List<DashboardBean>>(dashboardBeanList, HttpStatus.OK);
-    }
-	*/
- 
-	
-	/**
 	 * This service returns Dashboard details
 	 * @return String
 	 */
