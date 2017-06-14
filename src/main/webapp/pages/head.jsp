@@ -16,7 +16,7 @@
 <link href="resources/css/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="resources/css/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="resources/css/template/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="resources/css/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -27,3 +27,12 @@
 <!-- Dashboard Charts -->
 <script src="resources/javascript/js/dashboardCharts.js"></script>
 
+
+<!-- Bootstrap Core JavaScript -->
+<script type ="text/javascript" src="resources/javascript/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script type ="text/javascript" src="resources/javascript/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script type ="text/javascript" src="resources/javascript/vendor/raphael/raphael.js"></script>
