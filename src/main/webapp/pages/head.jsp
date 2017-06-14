@@ -13,7 +13,7 @@
 <link href="resources/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="resources/css/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="resources/css/vendor/metisMenu/metisMenu.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="resources/css/template/css/sb-admin-2.css" rel="stylesheet">
