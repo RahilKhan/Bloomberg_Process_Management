@@ -148,7 +148,7 @@
 				</div>
 				<div id="fileUploadDisplay" class="modal-body">
 					<!-- The file upload form used as target for the file upload widget -->
-					<form id="fileupload" action="UploadServlet" method="POST" enctype="multipart/form-data">
+					<form id="fileupload" action="fileUpload/uploadFiles" method="POST" enctype="multipart/form-data">
 	
 						<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 						<div class="row fileupload-buttonbar">
