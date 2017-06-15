@@ -60,16 +60,24 @@ public class FileuploadController {
             }
  
         }
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-        modelAndView.addObject("files", uploadedFiles);
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("hello");
+//        modelAndView.addObject("files", uploadedFiles);
         
         response = saveFileToDatabase(filePath,fileName);
-        log.info("\t response : " + response + "\n\t modelAndView : " + modelAndView.toString());
-        System.out.println("\n\t modelAndView : " + modelAndView.toString());
+        log.info("\t response : " + response 
+//        		+ "\n\t modelAndView : " + modelAndView.toString()
+        		);
+//        System.out.println("\n\t modelAndView : " + modelAndView.toString());
         
         
-        return modelAndView;
+//        return "redirect:index.jsp";
+        return new ModelAndView("redirect:index.jsp");
+    }
+    
+    @RequestMapping(value = "/indexPage", method = RequestMethod.GET)
+    public String finalPage() {
+       return "index";
     }
     
     
@@ -81,6 +89,7 @@ public class FileuploadController {
 	public @ResponseBody
 	String uploadFileToDatabase(@RequestParam("file") List < MultipartFile > files) {
 		log.info("FileUploadController : uploadFileToDatabase");
+		System.out.println("FileUploadController : uploadFileToDatabase");
 
 		List < FileInfo > uploadedFiles = new ArrayList < FileInfo > ();
 		String filePath="";
@@ -105,6 +114,7 @@ public class FileuploadController {
  
         }
         log.info("\t filePath : " + filePath + "\n\t fileName : " + fileName);
+        System.out.println("\t filePath : " + filePath + "\n\t fileName : " + fileName);
         response = saveFileToDatabase(filePath,fileName);
 //    	response = "success";
     	

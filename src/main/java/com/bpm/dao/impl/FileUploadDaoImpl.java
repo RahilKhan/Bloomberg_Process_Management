@@ -44,32 +44,24 @@ public class FileUploadDaoImpl extends AbstractDao<Integer, FileInfo> implements
 		String response = "uploading csv to mysql - demo";
 
 		Session session = getEntityManager().unwrap(Session.class);
-		String sql = "select * from curr_iso_map";
-		List result = session.createSQLQuery(sql).list();
 		
-		log.info("\t query result : " + result.toString());
-		System.out.println("\t query result : " + result.toString());
-		
-		int booleanResult = session.createSQLQuery(" LOAD DATA LOCAL INFILE :file ignore INTO TABLE DEALS_CSV_IMPORT_TEMP CHARACTER SET latin1 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;")
+//		String csvLoadSql = " LOAD DATA LOCAL INFILE :file ignore INTO TABLE DEALS_CSV_IMPORT_TEMP CHARACTER SET latin1 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;";
+		String csvLoadSql = " LOAD DATA LOCAL INFILE :file " 
+                          + " ignore INTO TABLE DEALS_CSV_IMPORT_TEMP CHARACTER SET utf8 FIELDS TERMINATED BY ',' "  
+                          + " LINES TERMINATED BY '\n' " 
+                          + " IGNORE 1 LINES " 
+                          + " (DEAL_UNIQUE_ID,ORDER_CURR_ISO,RECIPIENT_CURR_ISO,@DEALTIMESTAMP,DEAL_AMT_IN_ORDER_CURR_ISO) "
+                          + " SET DEAL_TIMESTAMP = STR_TO_DATE(@DEALTIMESTAMP, '%m%d%Y'); ";
+		int booleanResult = session.createSQLQuery(csvLoadSql)
 				.setString("file", filePath) 
 				.executeUpdate();	
 		
-		/*
-		 * Call procedure to process records
-		 */
-//		processImportedCsvRecords(fileName)
+		/* procdure call to save csv data into database */
 		int booleanCsvProcessResult = session.createSQLQuery("CALL processImportedCsvRecords(:file)")
 				.setParameter("file", fileName) 
 				.executeUpdate();
 		log.info("\t Load DATA booleanResult : " + booleanCsvProcessResult);
 		System.out.println("\t Load DATA booleanResult : " + booleanCsvProcessResult);
-		
-		
-//		Query query = session.createSQLQuery(
-//				"CALL GetStocks(:stockCode)")
-//				.addEntity(Stock.class)
-//				.setParameter("stockCode", "7277");
-//			List result = query.list();
 		
 		return response;
 	}

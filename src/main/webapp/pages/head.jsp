@@ -10,7 +10,7 @@
 <script type ="text/javascript" src="resources/javascript/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
-<link href="resources/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
 <link href="resources/css/vendor/metisMenu/metisMenu.css" rel="stylesheet">
@@ -22,11 +22,7 @@
 <link href="resources/css/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- Canvas JS -->
-<script src="resources/javascript/js/canvasjs.min.js"></script>
-
-<!-- Dashboard Charts -->
-<script src="resources/javascript/js/dashboardCharts.js"></script>
-
+<script src="resources/javascript/vendor/charts/canvasjs.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script type ="text/javascript" src="resources/javascript/vendor/bootstrap/js/bootstrap.min.js"></script>

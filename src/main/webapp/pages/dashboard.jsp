@@ -20,6 +20,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
 				<a href="#">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
@@ -27,6 +28,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</a>
+				 -->
 			</div>
 		</div>
 		<div class="col-lg-3 col-md-6">
@@ -42,6 +44,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
 				<a href="#">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
@@ -49,6 +52,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</a>
+				 -->
 			</div>
 		</div>
 		<div class="col-lg-3 col-md-6">
@@ -64,6 +68,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
 				<a href="#">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
@@ -71,6 +76,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</a>
+				-->
 			</div>
 		</div>
 		<div class="col-lg-3 col-md-6">
@@ -86,6 +92,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
 				<a href="#">
 					<div class="panel-footer">
 						<span class="pull-left">View Details</span>
@@ -93,20 +100,21 @@
 						<div class="clearfix"></div>
 					</div>
 				</a>
+				 -->
 			</div>
 		</div>
 	</div>
-	<!-- /.row -->
-	<div class="row">
-		<!-- /.col-lg-8 -->
-		<div class="col-lg-4">
+	
+	<!--BEGIN : Deal per Currency graph -->
+	<div id="currDealGraph" class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12">
 			<!-- /.panel -->
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-bar-chart-o fa-fw"></i> Deal count per currency
+					<i class="fa fa-bar-chart-o fa-fw"></i> Deals per currency
 				</div>
 				<div class="panel-body">
-					<div id="CurrentMonthIncomeExpenseOwed" style="height: 300px; width: 100%;"></div>
+					<div id="dealsPerCurrencyGraph" style="height: 300px; width: 100%;"></div>
 					<!-- <div id="income-expense-owed-chart"></div> -->
 				</div>
 				<!-- /.panel-body -->
@@ -115,12 +123,12 @@
 			<!-- /.panel .chat-panel -->
 			<div id="" class="panel panel-default" style="visibility:hidden"></div>
 		</div>
-		<!-- /.col-lg-4 -->
 	</div>
-	<!-- /.row -->
+	<!--END   : Deal per Currency graph -->
 	
 	<!--BEGIN : File Upload -->
-	<div class="container">
+	<!-- 
+	<div class="container" >
 	   <div class="row">
 	       <div class="col-md-8">
 	           <form method="post" action='fileUpload/upload' enctype="multipart/form-data">
@@ -133,39 +141,63 @@
 	       </div>
 	   </div>
 	</div>
-	<!--BEGIN : File Upload -->
+	 -->
+	<!--END   : File Upload -->
+	
+	<!--BEGIN : BS File Upload   -->
+	
+	<div class="container">
+		<div class="panel panel-default  col-lg-4 col-md-4 col-sm-4">
+			<div class="panel-heading"><h2>File upload Dialog</h2></div>
+			<div class="panel-body">
+				<div class="col-md-4">
+						<form id="fileUploadForm" method="post" action='fileUpload/upload' enctype="multipart/form-data">
+							<div class="form-group">
+								<input type="file" name="file" id="file1">
+							</div>
+						<button type="submit" id="Upload" name="Upload" value="Upload" class="btn btn-success start">
+							<i class="icon-upload icon-white"></i> <span>Upload</span>
+						</button>
+						<button id="resetUpload" type="reset"
+							class="btn btn-primary cancel">
+							<i class="icon-ban-circle icon-white"></i> <span>Reset</span>
+						</button>						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--END   : BS File Upload   -->
 	
 	<!-- Modal -->
-	<div class="modal fade" id="dialogForFileImport" role="dialog"
-		aria-labelledby="dialogForFileImportModalLabel" tabindex="-1">
+	<div class="modal fade" id="dialogForFileImport" role="dialog" aria-labelledby="dialogForFileImportModalLabel" tabindex="-1">
 		<div class="modal-dialog">
-	
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">File upload Dialog</h4> 
 				</div>
-				<div id="fileUploadDisplay" class="modal-body">
-					<!-- The file upload form used as target for the file upload widget -->
-					<form id="fileupload" action="fileUpload/uploadFiles" method="POST" enctype="multipart/form-data">
-	
-						<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+				<div id="csvFileUploadDisplay" class="modal-body">
+					<form id="fileuploadAjax" action="fileUpload/uploadFiles" method="POST" enctype="multipart/form-data">
 						<div class="row fileupload-buttonbar">
 							<div class="fileUploadDivSetting">
-								<input type="file" id="uploadedFile" accept=".csv">
+								<input type="file" id="uploadedAjaxFile" accept=".csv">
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="Upload" name="Upload" value="Upload"
+					<button type="button" id="uploadCsvFile" name="UploadCsvFile" value="UploadCsvFile"
 						class="btn btn-success start">
-						<i class="icon-upload icon-white"></i> <span>Upload</span>
+						<i class="icon-upload icon-white"></i> 
+						<span>Upload</span>
 					</button>
-					<button id="resetUpload" type="reset"
+					<button id="resetCsvUpload" type="reset"
 						class="btn btn-primary cancel">
-						<i class="icon-ban-circle icon-white"></i> <span>Reset</span>
+						<i class="icon-ban-circle icon-white"></i> 
+						<span>Reset</span>
 					</button>
 					<button type="reset" class="btn btn-default cancel"
 						data-dismiss="modal">Close</button>
@@ -173,16 +205,10 @@
 				<div id="fileUploadInfoMsgDiv" class="panel panel-info">
 					<div class="panel-heading">Only .csv files are allowed.</div>
 				</div>
-				<div id="fileUploadWarningMsgDiv" hidden="true" class="panel panel-danger">
-					<div id="fileUploadWarningPanelHdrDiv" class="panel-heading">
-						Only .csv files are allowed.
-					</div>
-				 </div>
-				 
 			</div>
 	
 		</div>
-	</div>
+</div>
 
 	<!-- Modal : spring multifile upload-->
 	<div class="modal fade" id="springCsvUpload" role="dialog"

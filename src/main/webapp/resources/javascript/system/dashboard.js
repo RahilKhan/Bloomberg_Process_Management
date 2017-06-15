@@ -8,9 +8,8 @@ if (typeof me.dashboard == 'undefined') {
 	me.dashboard = function() {
 		return {
 
-			msgArray:[], // variable for  checking same message
-            dashboardDetails : [],
-            
+			dashboardDetails : [],
+
 			/**
 			 * @author rahikhan
 			 * @description Function to be called once the dashboard loaded.
@@ -20,39 +19,66 @@ if (typeof me.dashboard == 'undefined') {
 				var promiseDashboardDetails = me.dashboard.getDashboardDetails();
 
 				$.when(promiseDashboardDetails).then(function() {
-							 me.dashboard.initializeDashboard();
-						});
-				
-				
+					me.dashboard.initializeDashboard();
+				});
+
+
 				$("#fileUpload").click(function() {
 					console.log("#fileUpload.click");
-//					 alert($('input[type=file]').val());
+					console.log("\t fileUpload.click \n\t " + $('input[type=file]').val());
+					$('#uploadedAjaxFile').val("");
+					$('#uploadedAjaxFile').unbind();
+					$("#resetCsvUpload").unbind();
+					$("#uploadCsvFile").unbind();
 					$('#dialogForFileImport').modal('show');
 				});
+
+				$("#uploadCsvFile").click(function() {
+					console.log("\t uploadCsvFile.click ");
+					me.dashboard.uploadCsvFile();
+				});
 				
+//				$("#fileUploadForm").submit(function(e) {
+//					console.log("\t fileUploadForm submitted.");
+//				    e.preventDefault();
+//				});
+
+				/*	
 				$("#fileSearch").click(function() {
 					console.log("#fileSearch.click");
-					/**/
 					me.dashboard.searchUploadFileDetails();
 					$('#dialogForFileImport').modal('show');
 				});
-				
+
 				$("#csvUpload").click(function() {
 					console.log("#csvUpload.click");
-//					 alert($('input[type=file]').val());
 					$('#springCsvUpload').modal('show');
 				});
-				
-				
-				$("#Upload").click(function() {
+
+
+				$("#Upload1").click(function() {
+					console.log("#Upload1.click");
 					console.log($('input[type=file]').val());
+					 me.dashboard.uploadCsvFile();
 				});
-				
+
 				$("#UploadCsv").click(function() {
 					console.log($('input[type=file]').val());
 				});				
-				
-				
+
+                $('#dialogForFileImport').on('hidden.bs.modal', function() {
+                    $('#uploadedAjaxFile').val("");
+                    $('#uploadedAjaxFile').unbind();
+                    $("#resetCsvUpload").unbind();
+                    $("#uploadCsvFile").unbind();
+                });
+
+                $('#resetCsvUpload').click(function() {
+                	console.log("\t resetCsvUpload.click");
+                    $('#uploadedAjaxFile').val("");
+                    $("#uploadCsvFile").unbind();
+                });
+
 				$(function(){
 
 					$('#file').change( function(event) {
@@ -63,11 +89,11 @@ if (typeof me.dashboard == 'undefined') {
 								+"\t path : " + path);
 					});
 				});
-				
+				 */
 			},
 
 			getDashboardDetails : function(){
-				console.log("dashboard.js : getDashboardDetails!!!...");
+				console.log("dashboard.js : getDashboardDetails");
 				var promise = $.ajax({
 					async: true,
 					url: "dashboard/getDashboardDetails.htm",
@@ -82,25 +108,51 @@ if (typeof me.dashboard == 'undefined') {
 				});
 				return promise;
 			},
-			
+
 			initializeDashboard : function(){
 				console.log("dashboard.js : initializeDashboard ");
 
-				
 				$("#pageHeader").text(me.dashboard.dashboardDetails[0].pageName);
-				
+
 				$("#currentMonthSaving").text(me.dashboard.dashboardDetails[0].savingAmount);
 				$("#currentMonthEarning").text(me.dashboard.dashboardDetails[0].earningAmount);
 				$("#totalOwed").text(me.dashboard.dashboardDetails[0].owedAmount);
 				$("#currentMonthExpenses").text(me.dashboard.dashboardDetails[0].expensesAmount);
-				
+
 				$("#currentMonthSavingHdr").text(me.dashboard.dashboardDetails[0].savingDetails);
 				$("#currentMonthEarningHdr").text(me.dashboard.dashboardDetails[0].earningDetails);
 				$("#totalOwedHdr").text(me.dashboard.dashboardDetails[0].owedDetails);
 				$("#currentMonthExpensesHdr").text(me.dashboard.dashboardDetails[0].expensesDetails);
-				
+
+				me.dashboard.displayDashBoardChart();
+
 			},
-			
+
+			uploadCsvFile : function(){
+				console.log("dashboard.js : uploadCsvFile");
+
+				var fd = new FormData();
+				fd.append('uploadedFile', this.files[0]); // since this is your file input
+
+				var promise = $.ajax({
+					async: true,
+					url: "fileUpload/uploadFiles.htm",
+					type: "post",
+					dataType: 'json',
+					enctype: 'multipart/form-data',
+					contentType: "text/json; charset=utf-8",
+//					processData: false, // important
+//					contentType: false, // important
+					data: fd,
+
+				}).done(function(result) {
+					console.log("\t result : " + JSON.stringify(result));
+				}).fail(function(jqXHR, textStatus) {
+					console.log("\tgetDashboardDetails : Application Exception Occured " );
+				});
+				return promise;
+			},
+
 			searchUploadFileDetails : function(){
 				console.log("dashboard.js : searchUploadFileDetails!!!...");
 				var promise = $.ajax({
@@ -117,7 +169,39 @@ if (typeof me.dashboard == 'undefined') {
 				});
 				return promise;
 			},
-			
+
+
+			/**
+			 * Method to display bar-graph
+			 */
+			displayDashBoardChart : function(){
+
+				var dataPointsArray = [];
+				$.each(me.dashboard.dashboardDetails[0].dealsPerCurrencyMap,function(key,value){
+					var dataPointObject = {};
+					dataPointObject["label"]=key;
+					dataPointObject["y"]=parseInt(value);
+					dataPointsArray.push(dataPointObject);
+				});
+
+				var chart = new CanvasJS.Chart("dealsPerCurrencyGraph",
+						{
+					//title:{text: "Deals count per currency"},
+					animationEnabled: true,
+					axisY: {title: "Amount"},
+					legend: {verticalAlign: "bottom",horizontalAlign: "left"},
+					theme: "theme2",
+					data: [{
+						type: "column",  
+						showInLegend: true, 
+						legendMarkerColor: "grey",
+						dataPoints: dataPointsArray,
+					}]
+						});
+				chart.render();
+
+			},
+
 		}
 	}();
 }

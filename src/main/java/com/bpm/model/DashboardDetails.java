@@ -1,5 +1,8 @@
 package com.bpm.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DashboardDetails {
 
 	private String pageName;
@@ -11,6 +14,15 @@ public class DashboardDetails {
 	private String owedAmount;
 	private String expensesDetails;
 	private String expensesAmount;
+	private Map<String,Integer> dealsPerCurrencyMap;
+	
+	
+	public Map<String, Integer> getDealsPerCurrencyMap() {
+		return dealsPerCurrencyMap;
+	}
+	public void setDealsPerCurrencyMap(Map<String, Integer> dealsPerCurrencyMap) {
+		this.dealsPerCurrencyMap = dealsPerCurrencyMap;
+	}
 	public String getPageName() {
 		return pageName;
 	}
@@ -67,13 +79,10 @@ public class DashboardDetails {
 	}
 	@Override
 	public String toString() {
-		return "DashboardBean [pageName=" + pageName + ", savingDetails=" + savingDetails + ", savingAmount="
+		return "DashboardDetails [pageName=" + pageName + ", savingDetails=" + savingDetails + ", savingAmount="
 				+ savingAmount + ", earningDetails=" + earningDetails + ", earningAmount=" + earningAmount
 				+ ", owedDetails=" + owedDetails + ", owedAmount=" + owedAmount + ", expensesDetails=" + expensesDetails
-				+ ", expensesAmount=" + expensesAmount + "]";
+				+ ", expensesAmount=" + expensesAmount + ", dealsPerCurrencyMap=" + dealsPerCurrencyMap + "]";
 	}
-	
-	
-	
 	
 }

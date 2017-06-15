@@ -5,8 +5,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
             <title>Spring 4 MVC - File Upload Example</title>
-            <!-- <link type="text/css" href="<c:url value='/assets/css/bootstrap.min.css' />" rel="stylesheet" /> -->
-            <link href="../resources/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="../resources/css/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
         </head>
         <body>
             <div class="container">

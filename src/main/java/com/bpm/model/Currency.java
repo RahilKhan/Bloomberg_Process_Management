@@ -1,6 +1,5 @@
 package com.bpm.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +10,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="curr_iso_map")
+@Table(name="currency")
 public class Currency {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,13 +25,13 @@ public class Currency {
     @Column(name="COUNTRY", nullable=false)	
 	private String country;
 	
-	@Column(name="EXCHANGE_RATE_DOLLAR", nullable=false)
-	private double exchangeRateDollar;
-
 	@NotEmpty
     @Column(name="ADM_FLAG", nullable=false)
 	private String admFlag;
 
+	@Column(name="DEALS_COUNT",nullable=true)
+	private int acceptedDealsCount;
+	
 	public String getCurrIsoMapId() {
 		return currIsoMapId;
 	}
@@ -57,14 +56,6 @@ public class Currency {
 		this.country = country;
 	}
 
-	public double getExchangeRateDollar() {
-		return exchangeRateDollar;
-	}
-
-	public void setExchangeRateDollar(double exchangeRateDollar) {
-		this.exchangeRateDollar = exchangeRateDollar;
-	}
-
 	public String getAdmFlag() {
 		return admFlag;
 	}
@@ -73,10 +64,19 @@ public class Currency {
 		this.admFlag = admFlag;
 	}
 
+	public int getAcceptedDealsCount() {
+		return acceptedDealsCount;
+	}
+
+	public void setAcceptedDealsCount(int acceptedDealsCount) {
+		this.acceptedDealsCount = acceptedDealsCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Currency [currIsoMapId=" + currIsoMapId + ", currencyIsoCode=" + currencyIsoCode + ", country="
-				+ country + ", exchangeRateDollar=" + exchangeRateDollar + ", admFlag=" + admFlag + "]";
+				+ country + ", admFlag=" + admFlag
+				+ ", acceptedDealsCount=" + acceptedDealsCount + "]";
 	}
 	
 }
