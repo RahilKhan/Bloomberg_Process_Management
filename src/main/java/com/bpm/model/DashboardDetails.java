@@ -1,6 +1,6 @@
 package com.bpm.model;
 
-public class DashboardBean {
+public class DashboardDetails {
 
 	private String pageName;
 	private String savingDetails;

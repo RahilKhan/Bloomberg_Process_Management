@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.bpm.model.DashboardBean;
+import com.bpm.model.DashboardDetails;
 import com.bpm.service.DashboardServiceInf;
 import com.bpm.service.UserService;
 import com.google.gson.Gson;
@@ -37,7 +37,7 @@ public class DashboardController {
 		String response = null;
     	String userId ="rahil";
 
-    	List<DashboardBean> dashboardBeanList = dashboardService.getDashBoardDetails(userId);
+    	List<DashboardDetails> dashboardBeanList = dashboardService.getDashBoardDetails(userId);
     	response = new Gson().toJson(dashboardBeanList);
     	
     	return response;

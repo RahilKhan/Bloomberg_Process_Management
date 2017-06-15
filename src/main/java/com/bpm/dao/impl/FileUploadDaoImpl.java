@@ -50,13 +50,26 @@ public class FileUploadDaoImpl extends AbstractDao<Integer, FileInfo> implements
 		log.info("\t query result : " + result.toString());
 		System.out.println("\t query result : " + result.toString());
 		
-		int booleanResult = session.createSQLQuery(" LOAD DATA LOCAL INFILE :file INTO TABLE deals_csv_import CHARACTER SET latin1 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;")
+		int booleanResult = session.createSQLQuery(" LOAD DATA LOCAL INFILE :file ignore INTO TABLE DEALS_CSV_IMPORT_TEMP CHARACTER SET latin1 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;")
 				.setString("file", filePath) 
-//				.setString("tbl","deals_csv_import")
 				.executeUpdate();	
 		
-		log.info("\t Load DATA booleanResult : " + booleanResult);
-		System.out.println("\t Load DATA booleanResult : " + booleanResult);
+		/*
+		 * Call procedure to process records
+		 */
+//		processImportedCsvRecords(fileName)
+		int booleanCsvProcessResult = session.createSQLQuery("CALL processImportedCsvRecords(:file)")
+				.setParameter("file", fileName) 
+				.executeUpdate();
+		log.info("\t Load DATA booleanResult : " + booleanCsvProcessResult);
+		System.out.println("\t Load DATA booleanResult : " + booleanCsvProcessResult);
+		
+		
+//		Query query = session.createSQLQuery(
+//				"CALL GetStocks(:stockCode)")
+//				.addEntity(Stock.class)
+//				.setParameter("stockCode", "7277");
+//			List result = query.list();
 		
 		return response;
 	}

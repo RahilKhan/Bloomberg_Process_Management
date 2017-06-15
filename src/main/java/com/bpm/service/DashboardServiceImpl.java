@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bpm.dao.inf.CurrencyDao;
 import com.bpm.dao.inf.DashboardDaoInf;
 import com.bpm.model.Currency;
-import com.bpm.model.DashboardBean;
+import com.bpm.model.DashboardDetails;
 import com.bpm.service.DashboardServiceInf;
 
 @Service("dashboardService")
@@ -26,7 +26,7 @@ public class DashboardServiceImpl implements DashboardServiceInf{
 	@Override
 	public List getDashBoardDetails(String userId) {
 		System.out.println("DashboardServiceImpl");
-		List<DashboardBean> dashboardList = dashboardDao.getDashBoardDetails(userId);
+		List<DashboardDetails> dashboardList = dashboardDao.getDashBoardDetails(userId);
 		System.out.println("\t dashboardList.size() : " + dashboardList.size() + "\n\tdashboardList : " + dashboardList.get(0).toString());
 		
 		List<Currency> currencyList = currencyDao.getAllCurrency();

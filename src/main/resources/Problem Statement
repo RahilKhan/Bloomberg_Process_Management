@@ -15,13 +15,13 @@ Request logic as following :
 	    Deal Amount in ordering currency
     
     Validate row structure.
-    Valid rows should be stored in table/document, with reference to source file name .
-    Invalid rows should be stored into another table/document, with reference to source file name.
-    The DB contains another table to maintain accumulative count of deals per Ordering Currency 
-    "Columns : Currency ISO Code, CountOfDeals ", 
-    so upon completion of importing process the system should increase count of deals per currency.
-    System should not import same file twice.
-    No rollback allowed, what every rows imported should be saved in DB.
+    1. Valid rows should be stored in table/document, with reference to source file name.
+    2. Invalid rows should be stored into another table/document, with reference to source file name.
+    3. The DB contains another table to maintain accumulative count of deals per Ordering Currency 
+       "Columns : Currency ISO Code, CountOfDeals ", 
+    	so upon completion of importing process the system should increase count of deals per currency.
+    4. System should not import same file twice.
+    5. No rollback allowed, what every rows imported should be saved in DB.
 
 
 Technical Specs :
