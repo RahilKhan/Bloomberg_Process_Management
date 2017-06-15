@@ -56,7 +56,7 @@ public class DashboardDaoImpl extends AbstractDao<Integer, DashboardDetails> imp
 		String totalOrderCurrency = ""+totalOrderCurrencyResultList.get(0);
 
 		String dealsPerCurrencySql = "select dcia.order_curr_iso, count(dcia.order_curr_iso) "
-				+ " from bpm.deals_csv_import_accepted dcia, bpm.currency curr " 
+				+ " from deals_csv_import_accepted dcia, currency curr " 
 				+ " where curr.CURRENCY_ISO_CODE = dcia.order_curr_iso "
 				+ " group by dcia.ORDER_CURR_ISO ";
 		List<List<Object>> dealsPerCurrencyResult = session.createSQLQuery(dealsPerCurrencySql).setResultTransformer(Transformers.TO_LIST).list();

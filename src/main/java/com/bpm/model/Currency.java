@@ -1,5 +1,7 @@
 package com.bpm.model;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="currency")
 public class Currency {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//    @GenericGenerator(name = "sequence", strategy = "sequence", parameters = {
+//            @org.hibernate.annotations.Parameter(name = "sequenceName", value = "sequence"),
+//            @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"),
+//    })
+//    @GeneratedValue(generator = "sequence", strategy=GenerationType.SEQUENCE)
 	@Column(name="CURR_ISO_MAP_ID", unique=true, nullable=false)
 	private String currIsoMapId;
     
@@ -30,7 +38,7 @@ public class Currency {
 	private String admFlag;
 
 	@Column(name="DEALS_COUNT",nullable=true)
-	private int acceptedDealsCount;
+	private BigInteger acceptedDealsCount;
 	
 	public String getCurrIsoMapId() {
 		return currIsoMapId;
@@ -64,12 +72,12 @@ public class Currency {
 		this.admFlag = admFlag;
 	}
 
-	public int getAcceptedDealsCount() {
+	public BigInteger getAcceptedDealsCount() {
 		return acceptedDealsCount;
 	}
 
-	public void setAcceptedDealsCount(int acceptedDealsCount) {
-		this.acceptedDealsCount = acceptedDealsCount;
+	public void setAcceptedDealsCount(BigInteger bigInteger) {
+		this.acceptedDealsCount = bigInteger;
 	}
 
 	@Override

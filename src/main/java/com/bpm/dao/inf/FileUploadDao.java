@@ -9,4 +9,6 @@ public interface FileUploadDao {
 	 * @return String response
 	 */
 	public String saveFileToDatabase(String filePath, String fileName);
+
+	public void updateCurrencyData();
 }
