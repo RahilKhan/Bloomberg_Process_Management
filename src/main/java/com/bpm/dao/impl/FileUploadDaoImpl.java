@@ -85,21 +85,18 @@ public class FileUploadDaoImpl extends AbstractDao<Integer, FileInfo> implements
 		Currency currency = null;
 		Session session = getEntityManager().unwrap(Session.class);
 
-		String getDealsPerCurrencySql = " select dcia.order_curr_iso as CURRENCY_ISO_CODE, '' as COUNTRY, "
-				+ " count(dcia.order_curr_iso) as DEALS_COUNT,'' as CURR_ISO_MAP_ID, 'V' as ADM_FLAG "
+		String getDealsPerCurrencySql = " select dcia.order_curr_iso as CURRENCY_ISO_CODE, "
+				+ " count(dcia.order_curr_iso) as DEALS_COUNT "
 				+ " from bpm.deals_csv_import_accepted dcia " 
 				+ " group by dcia.ORDER_CURR_ISO; ";
 		List<List<Object>> currencyResultList = session.createSQLQuery(getDealsPerCurrencySql).setResultTransformer(Transformers.TO_LIST).list();
-		
 		
 		for (List<Object> object : currencyResultList) {
 			
 			currency = new Currency();
 			currency.setCurrencyIsoCode((String)object.get(0));
-			currency.setCountry((String)object.get(1));
-			currency.setAcceptedDealsCount((BigInteger)object.get(2));
-			currency.setCurrIsoMapId((String)object.get(3));
-			currency.setAdmFlag((String)object.get(4));
+			currency.setAcceptedDealsCount((BigInteger)object.get(1));
+//			currency.setCurrIsoMapId((String)object.get(3));
 			session.saveOrUpdate(currency);
 			currencyList.add(currency);
 			

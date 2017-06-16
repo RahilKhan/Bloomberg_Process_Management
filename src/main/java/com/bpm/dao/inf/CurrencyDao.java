@@ -7,4 +7,5 @@ import com.bpm.model.Currency;
 public interface CurrencyDao {
 
 	public List<Currency> getAllCurrency();
+
 }
