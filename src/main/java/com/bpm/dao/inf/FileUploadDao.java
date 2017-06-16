@@ -10,5 +10,8 @@ public interface FileUploadDao {
 	 */
 	public String saveFileToDatabase(String filePath, String fileName);
 
+	/*
+	 * This service updates the currency information
+	 */
 	public void updateCurrencyData();
 }
