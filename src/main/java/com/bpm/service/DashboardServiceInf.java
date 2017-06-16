@@ -9,5 +9,5 @@ public interface DashboardServiceInf {
 	 * @param userId
 	 * @return
 	 */
-	public List getDashBoardDetails(String userId);
+	public List getDashBoardDetails();
 }

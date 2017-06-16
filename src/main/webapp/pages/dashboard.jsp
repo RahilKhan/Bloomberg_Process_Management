@@ -271,6 +271,37 @@
 	</div>	
 	
 	
+	<!-- BEGIN : File Search Model-->
+	<div class="modal fade" id="fileSearchDialog" role="dialog" aria-labelledby="fileSearchDialogLabel" tabindex="-1">
+		<div class="modal-dialog">
+		
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">File Search</h4> 
+				</div>
+				<div id="fileSearchDisplay" class="modal-body">
+					<div id="searchResultTable" class="table-striped">
+					<table class="table table-striped">
+					    <thead id="searchTableHead">
+					      <tr>
+					        <th>FileName</th>
+					        <th>No of Records uploaded</th>
+					      </tr>
+					    </thead>
+					    <tbody id="searchTableBody"></tbody>
+					  </table>
+					</div>			
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- END   : File Search Model-->
+	
 </div>
 <!-- /#page-wrapper -->
 

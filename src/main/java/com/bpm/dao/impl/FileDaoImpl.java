@@ -16,9 +16,9 @@ import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bpm.controller.FileuploadController;
+import com.bpm.controller.FileController;
 import com.bpm.dao.inf.AbstractDao;
-import com.bpm.dao.inf.FileUploadDao;
+import com.bpm.dao.inf.FileDao;
 import com.bpm.model.Currency;
 import com.bpm.model.FileInfo;
 
@@ -31,8 +31,8 @@ import java.sql.Statement;
 
 @Repository("fileUploadDao")
 @Transactional
-public class FileUploadDaoImpl extends AbstractDao<Integer, FileInfo> implements FileUploadDao {
-	private static Logger log = Logger.getLogger(FileUploadDaoImpl.class.getName()); 
+public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileDao {
+	private static Logger log = Logger.getLogger(FileDaoImpl.class.getName()); 
 
 	/** Alternative to Hibernate.initialize() */
 	protected void initializeCollection(Collection<?> collection) {
@@ -45,7 +45,7 @@ public class FileUploadDaoImpl extends AbstractDao<Integer, FileInfo> implements
 	@Override
 	public String saveFileToDatabase(String filePath, String fileName) {
 		log.info("\t filePath : " + filePath + "\n\t fileName : " + fileName);
-		System.out.println("FileuploadController : saveFileToDatabase \n\t filePath : " + filePath + "\n\t fileName : " + fileName);
+		//		System.out.println("FileuploadController : saveFileToDatabase \n\t filePath : " + filePath + "\n\t fileName : " + fileName);
 		String response = "failure";
 
 		Session session = getEntityManager().unwrap(Session.class);
@@ -79,7 +79,7 @@ public class FileUploadDaoImpl extends AbstractDao<Integer, FileInfo> implements
 	@Override
 	public void updateCurrencyData() {
 		log.info("FileUploadDaoImpl.java : updateCurrencyData() ");
-		System.out.println("FileUploadDaoImpl.java : updateCurrencyData ");
+		//		System.out.println("FileUploadDaoImpl.java : updateCurrencyData ");
 
 		List<Currency> currencyList = new ArrayList<>();
 		Currency currency = null;
@@ -90,22 +90,58 @@ public class FileUploadDaoImpl extends AbstractDao<Integer, FileInfo> implements
 				+ " from bpm.deals_csv_import_accepted dcia " 
 				+ " group by dcia.ORDER_CURR_ISO; ";
 		List<List<Object>> currencyResultList = session.createSQLQuery(getDealsPerCurrencySql).setResultTransformer(Transformers.TO_LIST).list();
-		
+
 		for (List<Object> object : currencyResultList) {
-			
+
 			currency = new Currency();
 			currency.setCurrencyIsoCode((String)object.get(0));
 			currency.setAcceptedDealsCount((BigInteger)object.get(1));
-//			currency.setCurrIsoMapId((String)object.get(3));
+			//			currency.setCurrIsoMapId((String)object.get(3));
 			session.saveOrUpdate(currency);
 			currencyList.add(currency);
-			
-			System.out.println("\t currency : " + currency.toString() + "\n\t currencyList.toString() : " + currencyList.toString());
+
+			//			System.out.println("\t currency : " + currency.toString() + "\n\t currencyList.toString() : " + currencyList.toString());
 		}
 
-		System.out.println("\t currencyList.size() : " + currencyList.size() 
-		+ "\n\t currencyList.toString() : " + currencyList.toString());
+		//		System.out.println("\t currencyList.size() : " + currencyList.size() 
+		//		+ "\n\t currencyList.toString() : " + currencyList.toString());
 
+	}
+
+	@Override
+	public List getFileDetails(String searchString) {
+		System.out.println("FileDaoImpl : getFileDetails \n\t searchString : " + searchString);
+
+		Map<String,String> fileSearchResultMap = new HashMap();
+		List<Map<String,String>> fileSearchResultList = new ArrayList<>();
+
+		@SuppressWarnings("unchecked")
+		List<Object[]> fileSearchResult = getEntityManager()
+		.createQuery("SELECT dad.fileName,count(dad.fileName) FROM DealsAcceptedDetails dad where dad.fileName like :searchString")
+		.setParameter("searchString", "%" + searchString + "%")
+		.getResultList();
+
+		System.out.println("\n\t fileSearchResult.size() : " + fileSearchResult.size());
+
+		try{
+			for (Object[] object : fileSearchResult) {
+				String fileName  = object[0].toString();
+				String dealCount = object[1].toString();
+				fileSearchResultMap.put("fileName",fileName);
+				fileSearchResultMap.put("dealCount",dealCount);
+				
+			}
+			fileSearchResultList.add(fileSearchResultMap);
+		}
+		catch(Exception e){
+			System.out.println("No Record found");
+		}
+
+		System.out.println("\t fileSearchResultMap.size() : " + fileSearchResultMap.size() 
+		+ "\n\t fileSearchResultMap : " + fileSearchResultMap.toString()
+		+ "\n\t fileSearchResultList.size() : " + fileSearchResultList.size());
+
+		return fileSearchResultList;
 	}
 
 

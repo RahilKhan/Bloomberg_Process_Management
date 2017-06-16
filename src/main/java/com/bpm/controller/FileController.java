@@ -3,9 +3,12 @@ package com.bpm.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,20 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bpm.model.DashboardDetails;
 import com.bpm.model.FileInfo;
-import com.bpm.service.FileUploadServiceInf;
+import com.bpm.service.FileServiceInf;
+import com.google.gson.Gson;
 
 //@Controller
 @RestController
 @RequestMapping("/fileUpload")
-public class FileuploadController {
-	private static Logger log = Logger.getLogger(FileuploadController.class.getName()); 
+public class FileController {
+	private static Logger log = Logger.getLogger(FileController.class.getName()); 
 	
     @Autowired
     ServletContext context;
  
 	@Autowired
-	FileUploadServiceInf fileUploadService; 
+	FileServiceInf fileService; 
     
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ModelAndView upload(@RequestParam("file") List < MultipartFile > files) {
@@ -42,9 +47,7 @@ public class FileuploadController {
         if (!files.isEmpty()) {
             try {
                 for (MultipartFile file: files) {
-//                    String path = context.getRealPath("/WEB-INF/uploaded") + File.separator + file.getOriginalFilename();
                     String path = "C:\\ProgramData\\MySQL\\MySQL Server 5.7\\Uploads" + File.separator + file.getOriginalFilename();
-//                    String path = "C:\\Users\\rahikhan\\Downloads\\testUpload" + File.separator + file.getOriginalFilename();
                     
                     filePath = path;
                     fileName = file.getOriginalFilename();
@@ -167,9 +170,32 @@ public class FileuploadController {
 	public String saveFileToDatabase(String filePath,String fileName){
 		log.info("\t filePath : " + filePath + "\n\t fileName : " + fileName);
 		System.out.println("FileuploadController : saveFileToDatabase \n\t filePath : " + filePath + "\n\t fileName : " + fileName);
-		String response = fileUploadService.saveFileToDatabase( filePath, fileName);
+		String response = fileService.saveFileToDatabase( filePath, fileName);
 		
 		return response;
+	}
+	
+
+	
+	/**
+	 * This service returns File details based on search text provided
+	 * @return String
+	 */
+	@RequestMapping(value = "/getFileDetails", method = RequestMethod.GET)
+	public @ResponseBody
+	String getFileDetails(HttpServletRequest request) {
+		System.out.println("Dashboardcontroller : getFileDetails");
+		String response = null;
+
+		String searchString = request.getParameter("searchText");
+
+		List searchResultList = fileService.getFileDetails(searchString);
+		response = new Gson().toJson(fileService.getFileDetails(searchString));
+    	System.out.println("\t searchResultList : " + searchResultList.toString() 
+		 + "\n\t response : " + response);
+
+		
+    	return response;
 	}
 	
 }

@@ -4,5 +4,5 @@ import java.util.List ;
 
 public interface DashboardDaoInf {
 
-	public List getDashBoardDetails(String userId);
+	public List getDashBoardDetails();
 }

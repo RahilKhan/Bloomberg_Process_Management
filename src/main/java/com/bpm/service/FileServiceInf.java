@@ -1,8 +1,9 @@
 package com.bpm.service;
 
 import java.util.List;
+import java.util.Map;
 
-public interface FileUploadServiceInf {
+public interface FileServiceInf {
 
 	/**
 	 * This service persists the uploaded file to the database
@@ -11,5 +12,7 @@ public interface FileUploadServiceInf {
 	 * @return
 	 */
 	public String saveFileToDatabase(String filePath,String fileName);
+
+	public List getFileDetails(String searchString);
 	
 }

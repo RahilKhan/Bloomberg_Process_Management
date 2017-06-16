@@ -26,7 +26,7 @@ public class DashboardDaoImpl extends AbstractDao<Integer, DashboardDetails> imp
 	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List getDashBoardDetails(String userId) {
+	public List getDashBoardDetails() {
 		log.info("DashboardDaoImpl");
 		
 		Session session = getEntityManager().unwrap(Session.class);
@@ -39,7 +39,7 @@ public class DashboardDaoImpl extends AbstractDao<Integer, DashboardDetails> imp
 		 
 		@SuppressWarnings("unchecked")
 		List<Integer> totalDealsAcceptedResultList = getEntityManager()
-                .createQuery("SELECT count(dcd.dealUniqueId) FROM DealsAcceptedDetails dcd")
+                .createQuery("SELECT count(dad.dealUniqueId) FROM DealsAcceptedDetails dad")
                 .getResultList();
 		String totalDealsAccepted = ""+totalDealsAcceptedResultList.get(0);
 
@@ -47,13 +47,14 @@ public class DashboardDaoImpl extends AbstractDao<Integer, DashboardDetails> imp
 		List<Integer> totalDealsRejectedResultList = getEntityManager()
                 .createQuery("SELECT count(drd.dealUniqueId) FROM DealsRejectedDetails drd")
                 .getResultList();
-		String totalDealsRejected = ""+totalDealsRejectedResultList.get(0);
+		String totalDealsRejected =  "" + totalDealsRejectedResultList.get(0);
+		
 
 		@SuppressWarnings("unchecked")
 		List<Integer> totalOrderCurrencyResultList = getEntityManager()
-                .createQuery("SELECT count(distinct dcd.orderCurrIso) FROM DealsAcceptedDetails dcd")
+                .createQuery("SELECT count(distinct dad.orderCurrIso) FROM DealsAcceptedDetails dad")
                 .getResultList();
-		String totalOrderCurrency = ""+totalOrderCurrencyResultList.get(0);
+		String totalOrderCurrency = "" + totalOrderCurrencyResultList.get(0);
 
 		String dealsPerCurrencySql = "select dcia.order_curr_iso, count(dcia.order_curr_iso) "
 				+ " from deals_csv_import_accepted dcia, currency curr " 

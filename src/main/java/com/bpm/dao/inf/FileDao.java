@@ -1,6 +1,9 @@
 package com.bpm.dao.inf;
 
-public interface FileUploadDao {
+import java.util.List;
+import java.util.Map;
+
+public interface FileDao {
 
 	/**
 	 * This method persist the uploaded file into database.
@@ -14,4 +17,6 @@ public interface FileUploadDao {
 	 * This service updates the currency information
 	 */
 	public void updateCurrencyData();
+
+	public List getFileDetails(String searchString);
 }

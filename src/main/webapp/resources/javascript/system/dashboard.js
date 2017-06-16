@@ -9,7 +9,8 @@ if (typeof me.dashboard == 'undefined') {
 		return {
 
 			dashboardDetails : [],
-
+			fileDetails : [],
+			
 			/**
 			 * @author rahikhan
 			 * @description Function to be called once the dashboard loaded.
@@ -22,7 +23,6 @@ if (typeof me.dashboard == 'undefined') {
 					me.dashboard.initializeDashboard();
 				});
 
-
 				$("#fileUpload").click(function() {
 					console.log("#fileUpload.click");
 					console.log("\t fileUpload.click \n\t " + $('input[type=file]').val());
@@ -33,14 +33,29 @@ if (typeof me.dashboard == 'undefined') {
 					$('#dialogForFileImport').modal('show');
 				});
 
+				/* Resetting file input button on page load*/
+				$('#file1').val("");
+				$('#file1').unbind();
+				$("#searchText").val("");
+
 				$("#uploadCsvFile").click(function() {
 					console.log("\t uploadCsvFile.click ");
 					me.dashboard.uploadCsvFile();
 				});
-				
+
+				$("#fileSearch").click(function(){
+					if($("#searchText").val().length > 0){
+						me.dashboard.searchFileDetails();
+						$('#fileSearchDialog').modal('show');
+					}else{
+						alert("Please provide search input")
+					}
+				});
+
+
 //				$("#fileUploadForm").submit(function(e) {
-//					console.log("\t fileUploadForm submitted.");
-//				    e.preventDefault();
+//				console.log("\t fileUploadForm submitted.");
+//				e.preventDefault();
 //				});
 
 				/*	
@@ -153,21 +168,43 @@ if (typeof me.dashboard == 'undefined') {
 				return promise;
 			},
 
-			searchUploadFileDetails : function(){
-				console.log("dashboard.js : searchUploadFileDetails!!!...");
-				var promise = $.ajax({
-					async: true,
-					url: "dashboard/getDashboardDetails.htm",
-					type: "GET",
-					datatype: "json",
-					accept: "application/json",
-				}).done(function(result) {
-					me.dashboard.dashboardDetails = JSON.parse(result);
-					console.log("\tme.dashboard.dashboardDetails : " + JSON.stringify(me.dashboard.dashboardDetails));
-				}).fail(function(jqXHR, textStatus) {
-					console.log("\tgetDashboardDetails : Application Exception Occured " );
-				});
-				return promise;
+			/**
+			 * This method makes call to fetch file detail based on search text provided
+			 */
+			searchFileDetails : function(){
+
+				var searchText = $("#searchText").val();
+
+				if(searchText.length > 0){ 
+					var promise = $.ajax({
+						async: true,
+						url: "fileUpload/getFileDetails.htm?searchText=" + searchText,
+						type: "GET",
+						datatype: "json",
+						accept: "application/json",
+					}).done(function(result) {
+						me.dashboard.fileDetails = JSON.parse(result);
+
+						var fileSearchTableBody = "";
+						$.each(me.dashboard.fileDetails,function(index,object){
+							fileSearchTableBody = "<tr><td>"+object.fileName+"</td><td>"+object.dealCount+"</td></tr>";
+						});
+
+						if(fileSearchTableBody.length > 0){
+							$("#searchText").val("");
+							$("#searchTableBody").empty();
+							$("#searchTableBody").append(fileSearchTableBody);
+						}else{
+							$("#searchTableBody").empty();
+							$("#searchTableBody").append("<h3>No data found</h3>");
+
+						}
+					}).fail(function(jqXHR, textStatus) {
+						console.log("\t searchFileDetails : Application Exception Occured " );
+					});
+
+					return promise;
+				}
 			},
 
 

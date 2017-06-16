@@ -42,7 +42,7 @@
 			<ul class="nav" id="side-menu">
 				<li class="sidebar-search">
 					<div class="input-group custom-search-form">
-						<input type="text" class="form-control" placeholder="Search file name...">
+						<input id="searchText" type="text" class="form-control" placeholder="Search file name...">
 						<span class="input-group-btn">
 							<button id ="fileSearch" class="btn btn-default" type="button">
 								<i class="fa fa-search"></i>

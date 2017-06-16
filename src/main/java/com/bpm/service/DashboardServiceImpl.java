@@ -24,9 +24,9 @@ public class DashboardServiceImpl implements DashboardServiceInf{
 	CurrencyDao currencyDao;
 	
 	@Override
-	public List getDashBoardDetails(String userId) {
+	public List getDashBoardDetails() {
 		System.out.println("DashboardServiceImpl");
-		List<DashboardDetails> dashboardList = dashboardDao.getDashBoardDetails(userId);
+		List<DashboardDetails> dashboardList = dashboardDao.getDashBoardDetails();
 		System.out.println("\t dashboardList.size() : " + dashboardList.size() + "\n\tdashboardList : " + dashboardList.get(0).toString());
 		
 		List<Currency> currencyList = currencyDao.getAllCurrency();

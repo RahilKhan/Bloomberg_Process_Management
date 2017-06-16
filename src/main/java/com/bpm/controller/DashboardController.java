@@ -35,10 +35,12 @@ public class DashboardController {
 	String getDashBoardDetails(HttpServletRequest request) {
 		System.out.println("Dashboardcontroller : getDashBoardDetails");
 		String response = null;
-    	String userId ="rahil";
 
-    	List<DashboardDetails> dashboardBeanList = dashboardService.getDashBoardDetails(userId);
+    	List<DashboardDetails> dashboardBeanList = dashboardService.getDashBoardDetails();
     	response = new Gson().toJson(dashboardBeanList);
+    	
+    	System.out.println("\t dashboardBeanList : " + dashboardBeanList.toString() 
+    					 + "\n\t response : " + response);
     	
     	return response;
 	}
