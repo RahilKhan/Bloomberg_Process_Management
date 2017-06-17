@@ -54,17 +54,11 @@
 				<li>
 					<a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 				</li>
+				<!-- 
 				<li>
-					<a href="pages/fileUpload.jsp"><i class="fa fa-dashboard fa-fw"></i> FileUpload</a>
-				</li>				
-				<li>
-					<!-- <a id="fileUpload" href="#"><i class="fa fa-upload fa-fw"></i> Data Upload</a> -->
-					<button  id="fileUpload" type="button" class="btn"><i class="fa fa-upload fa-fw"></i>Data Upload</button>
+					<a href="pages/fileUpload.jsp" target="_blank"><i class="fa fa-dashboard fa-fw"></i> FileUpload</a>
 				</li>
-				<li>
-					<button  id="csvUpload" type="button" class="btn"><i class="fa fa-upload fa-fw"></i>CSV Upload</button>
-				</li>
-				
+				 -->				
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->

@@ -23,25 +23,10 @@ if (typeof me.dashboard == 'undefined') {
 					me.dashboard.initializeDashboard();
 				});
 
-				$("#fileUpload").click(function() {
-					console.log("#fileUpload.click");
-					console.log("\t fileUpload.click \n\t " + $('input[type=file]').val());
-					$('#uploadedAjaxFile').val("");
-					$('#uploadedAjaxFile').unbind();
-					$("#resetCsvUpload").unbind();
-					$("#uploadCsvFile").unbind();
-					$('#dialogForFileImport').modal('show');
-				});
-
 				/* Resetting file input button on page load*/
 				$('#file1').val("");
 				$('#file1').unbind();
 				$("#searchText").val("");
-
-				$("#uploadCsvFile").click(function() {
-					console.log("\t uploadCsvFile.click ");
-					me.dashboard.uploadCsvFile();
-				});
 
 				$("#fileSearch").click(function(){
 					if($("#searchText").val().length > 0){
@@ -52,61 +37,12 @@ if (typeof me.dashboard == 'undefined') {
 					}
 				});
 
-
-//				$("#fileUploadForm").submit(function(e) {
-//				console.log("\t fileUploadForm submitted.");
-//				e.preventDefault();
-//				});
-
-				/*	
-				$("#fileSearch").click(function() {
-					console.log("#fileSearch.click");
-					me.dashboard.searchUploadFileDetails();
-					$('#dialogForFileImport').modal('show');
-				});
-
-				$("#csvUpload").click(function() {
-					console.log("#csvUpload.click");
-					$('#springCsvUpload').modal('show');
-				});
-
-
-				$("#Upload1").click(function() {
-					console.log("#Upload1.click");
-					console.log($('input[type=file]').val());
-					 me.dashboard.uploadCsvFile();
-				});
-
-				$("#UploadCsv").click(function() {
-					console.log($('input[type=file]').val());
-				});				
-
-                $('#dialogForFileImport').on('hidden.bs.modal', function() {
-                    $('#uploadedAjaxFile').val("");
-                    $('#uploadedAjaxFile').unbind();
-                    $("#resetCsvUpload").unbind();
-                    $("#uploadCsvFile").unbind();
-                });
-
-                $('#resetCsvUpload').click(function() {
-                	console.log("\t resetCsvUpload.click");
-                    $('#uploadedAjaxFile').val("");
-                    $("#uploadCsvFile").unbind();
-                });
-
-				$(function(){
-
-					$('#file').change( function(event) {
-						var tmppath = URL.createObjectURL(event.target.files[0]);
-						$("img").fadeIn("fast").attr('src',tmppath);
-						var path = document.getElementById("file").value;
-						console.log("\t tmppath : " + tmppath
-								+"\t path : " + path);
-					});
-				});
-				 */
 			},
 
+			/**
+			 * @author rahikhan
+			 * @description This method make ajax call to fetch the dashboard details.
+			 */
 			getDashboardDetails : function(){
 				console.log("dashboard.js : getDashboardDetails");
 				var promise = $.ajax({
@@ -124,8 +60,11 @@ if (typeof me.dashboard == 'undefined') {
 				return promise;
 			},
 
+			/**
+			 * @author rahikhan
+			 * @description This method initializes the screen with dashboard details.
+			 */
 			initializeDashboard : function(){
-				console.log("dashboard.js : initializeDashboard ");
 
 				$("#pageHeader").text(me.dashboard.dashboardDetails[0].pageName);
 
@@ -143,33 +82,9 @@ if (typeof me.dashboard == 'undefined') {
 
 			},
 
-			uploadCsvFile : function(){
-				console.log("dashboard.js : uploadCsvFile");
-
-				var fd = new FormData();
-				fd.append('uploadedFile', this.files[0]); // since this is your file input
-
-				var promise = $.ajax({
-					async: true,
-					url: "fileUpload/uploadFiles.htm",
-					type: "post",
-					dataType: 'json',
-					enctype: 'multipart/form-data',
-					contentType: "text/json; charset=utf-8",
-//					processData: false, // important
-//					contentType: false, // important
-					data: fd,
-
-				}).done(function(result) {
-					console.log("\t result : " + JSON.stringify(result));
-				}).fail(function(jqXHR, textStatus) {
-					console.log("\tgetDashboardDetails : Application Exception Occured " );
-				});
-				return promise;
-			},
-
 			/**
-			 * This method makes call to fetch file detail based on search text provided
+			 * @author rahikhan
+			 * @description This method makes call to fetch file detail based on search text provided
 			 */
 			searchFileDetails : function(){
 
@@ -209,7 +124,8 @@ if (typeof me.dashboard == 'undefined') {
 
 
 			/**
-			 * Method to display bar-graph
+			 * @author rahikhan
+			 * @description Method to display bar-graph
 			 */
 			displayDashBoardChart : function(){
 
@@ -225,7 +141,8 @@ if (typeof me.dashboard == 'undefined') {
 						{
 					//title:{text: "Deals count per currency"},
 					animationEnabled: true,
-					axisY: {title: "Amount"},
+					axisY: {title: "Deals"},
+					axisX: {title: "Currency"},
 					legend: {verticalAlign: "bottom",horizontalAlign: "left"},
 					theme: "theme2",
 					data: [{

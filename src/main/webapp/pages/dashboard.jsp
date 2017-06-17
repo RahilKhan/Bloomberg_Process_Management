@@ -158,10 +158,6 @@
 						<button type="submit" id="Upload" name="Upload" value="Upload" class="btn btn-success start">
 							<i class="icon-upload icon-white"></i> <span>Upload</span>
 						</button>
-						<button id="resetUpload" type="reset"
-							class="btn btn-primary cancel">
-							<i class="icon-ban-circle icon-white"></i> <span>Reset</span>
-						</button>						
 					</form>
 				</div>
 			</div>
@@ -169,107 +165,6 @@
 	</div>
 	
 	<!--END   : BS File Upload   -->
-	
-	<!-- Modal -->
-	<div class="modal fade" id="dialogForFileImport" role="dialog" aria-labelledby="dialogForFileImportModalLabel" tabindex="-1">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">File upload Dialog</h4> 
-				</div>
-				<div id="csvFileUploadDisplay" class="modal-body">
-					<form id="fileuploadAjax" action="fileUpload/uploadFiles" method="POST" enctype="multipart/form-data">
-						<div class="row fileupload-buttonbar">
-							<div class="fileUploadDivSetting">
-								<input type="file" id="uploadedAjaxFile" accept=".csv">
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="uploadCsvFile" name="UploadCsvFile" value="UploadCsvFile"
-						class="btn btn-success start">
-						<i class="icon-upload icon-white"></i> 
-						<span>Upload</span>
-					</button>
-					<button id="resetCsvUpload" type="reset"
-						class="btn btn-primary cancel">
-						<i class="icon-ban-circle icon-white"></i> 
-						<span>Reset</span>
-					</button>
-					<button type="reset" class="btn btn-default cancel"
-						data-dismiss="modal">Close</button>
-				</div>
-				<div id="fileUploadInfoMsgDiv" class="panel panel-info">
-					<div class="panel-heading">Only .csv files are allowed.</div>
-				</div>
-			</div>
-	
-		</div>
-</div>
-
-	<!-- Modal : spring multifile upload-->
-	<div class="modal fade" id="springCsvUpload" role="dialog"
-		aria-labelledby="dialogForFileImportModalLabel" tabindex="-1">
-		<div class="modal-dialog">
-	
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Csv upload Dialog</h4> 
-				</div>
-				<div id="fileUploadDisplay" class="modal-body">
-				    <div class="form-container">
-				        <form method="POST" modelAttribute="fileBucket" enctype="multipart/form-data" class="form-horizontal" >
-				         
-				            <div class="row">
-				                <div class="form-group col-md-12">
-				                    <label class="col-md-3 control-lable" for="file">Upload a file</label>
-				                    <div class="col-md-7">
-				                        <input type="file" path="file" id="file" class="form-control input-sm" accept=".csv"/>
-				                        <div class="has-error">
-				                            <errors path="file" class="help-inline"/>
-				                        </div>
-				                    </div>
-				                </div>
-				            </div>
-				     
-				     		<!-- 
-				            <div class="row">
-				                <div class="form-actions floatRight">
-				                    <input type="submit" value="Upload" class="btn btn-primary btn-sm">
-				                </div>
-				            </div>
-				            -->
-				        </form>
-				    </div>					
-				</div>
-				<div class="modal-footer">
-					<input type="submit" value="UploadCsv" class="btn btn-success start">
-					<button id="resetUpload" type="reset"
-						class="btn btn-primary cancel">
-						<i class="icon-ban-circle icon-white"></i> <span>Reset</span>
-					</button>
-					<button type="reset" class="btn btn-default cancel"
-						data-dismiss="modal">Close</button>
-				</div>
-				<div id="fileUploadInfoMsgDiv" class="panel panel-info">
-					<div class="panel-heading">Only .csv files are allowed.</div>
-				</div>
-				<div id="fileUploadWarningMsgDiv" hidden="true" class="panel panel-danger">
-					<div id="fileUploadWarningPanelHdrDiv" class="panel-heading">
-						Only .csv files are allowed.
-					</div>
-				 </div>
-				 
-			</div>
-	
-		</div>
-	</div>	
-	
 	
 	<!-- BEGIN : File Search Model-->
 	<div class="modal fade" id="fileSearchDialog" role="dialog" aria-labelledby="fileSearchDialogLabel" tabindex="-1">
