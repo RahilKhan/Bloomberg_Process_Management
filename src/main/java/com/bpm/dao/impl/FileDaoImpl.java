@@ -54,17 +54,18 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 				+ " ignore INTO TABLE DEALS_CSV_IMPORT_TEMP CHARACTER SET utf8 FIELDS TERMINATED BY ',' "  
 				+ " LINES TERMINATED BY '\\n' " 
 				+ " IGNORE 1 LINES " 
-				+ " (DEAL_UNIQUE_ID,ORDER_CURR_ISO,RECIPIENT_CURR_ISO,@DEALTIMESTAMP,DEAL_AMT_IN_ORDER_CURR_ISO) "
-				+ " SET DEAL_TIMESTAMP = STR_TO_DATE(@DEALTIMESTAMP, '%m/%d/%Y'); ";
+				+ " (DEAL_UNIQUE_ID,ORDER_CURR_ISO,RECIPIENT_CURR_ISO,@DEALTIMESTAMP,DEAL_AMT_IN_ORDER_CURR_ISO,@FILE_NAME) "
+				+ " SET DEAL_TIMESTAMP = STR_TO_DATE(@DEALTIMESTAMP, '%m/%d/%Y'), "
+				+ " FILE_NAME =:fileName ; ";
 		
 		System.out.println("\t csvLoadSql : " + csvLoadSql);
 		int recUploadCount = session.createSQLQuery(csvLoadSql)
-//				.setParameter("filePath", filePath)
-				.setString("filePath", filePath) 
+				.setString("filePath", filePath)
+				.setString("fileName", fileName)
 				.executeUpdate();	
 		System.out.println("\t recUploadCount : " + recUploadCount);
-		/* procdure call to save csv data into database */
-		
+
+		/* procedure call to process csv data into accepted and rejected records in database */
 		int booleanCsvProcessResult = session.createSQLQuery("CALL processImportedCsvRecords(:file)")
 				.setParameter("file", fileName) 
 				.executeUpdate();
@@ -73,16 +74,34 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 		if(recUploadCount > 0)
 			response = "success";
 
-		updateCurrencyData();
-        
-		
+//		updateCurrencyData();
+        		
         return response;
 	}
 
+	/**
+	 * This method process the records saved in temp table and stores them in 
+	 * accepted and rejected records table
+	 * @param fileName
+	 * @return
+	 */
+	@Override
+	public int processCsvTempData(String fileName){
+		Session session = getEntityManager().unwrap(Session.class);
+		
+		/* procedure call to process csv data into accepted and rejected records in database */
+		int booleanCsvProcessResult = session.createSQLQuery("CALL processImportedCsvRecords(:file)")
+				.setParameter("file", fileName) 
+				.executeUpdate();
+		log.info("\t Load DATA booleanResult : " + booleanCsvProcessResult);
+		System.out.println("\t Load DATA booleanResult : " + booleanCsvProcessResult);
+		
+		return booleanCsvProcessResult;
+	}
+	
 	@Override
 	public void updateCurrencyData() {
 		log.info("FileUploadDaoImpl.java : updateCurrencyData() ");
-		//		System.out.println("FileUploadDaoImpl.java : updateCurrencyData ");
 
 		List<Currency> currencyList = new ArrayList<>();
 		Currency currency = null;
@@ -95,19 +114,14 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 		List<List<Object>> currencyResultList = session.createSQLQuery(getDealsPerCurrencySql).setResultTransformer(Transformers.TO_LIST).list();
 
 		for (List<Object> object : currencyResultList) {
-
 			currency = new Currency();
 			currency.setCurrencyIsoCode((String)object.get(0));
 			currency.setAcceptedDealsCount((BigInteger)object.get(1));
-			//			currency.setCurrIsoMapId((String)object.get(3));
 			session.saveOrUpdate(currency);
 			currencyList.add(currency);
-
-			//			System.out.println("\t currency : " + currency.toString() + "\n\t currencyList.toString() : " + currencyList.toString());
 		}
 
-		//		System.out.println("\t currencyList.size() : " + currencyList.size() 
-		//		+ "\n\t currencyList.toString() : " + currencyList.toString());
+		System.out.println("\t currencyList.size() : " + currencyList.size());
 
 	}
 
@@ -124,7 +138,7 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 		.setParameter("searchString", "%" + searchString + "%")
 		.getResultList();
 
-		System.out.println("\n\t fileSearchResult.size() : " + fileSearchResult.size());
+//		System.out.println("\n\t fileSearchResult.size() : " + fileSearchResult.size());
 
 		try{
 			for (Object[] object : fileSearchResult) {
@@ -132,7 +146,6 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 				String dealCount = object[1].toString();
 				fileSearchResultMap.put("fileName",fileName);
 				fileSearchResultMap.put("dealCount",dealCount);
-				
 			}
 			fileSearchResultList.add(fileSearchResultMap);
 		}
@@ -140,10 +153,11 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 			System.out.println("No Record found");
 		}
 
+		/*
 		System.out.println("\t fileSearchResultMap.size() : " + fileSearchResultMap.size() 
 		+ "\n\t fileSearchResultMap : " + fileSearchResultMap.toString()
 		+ "\n\t fileSearchResultList.size() : " + fileSearchResultList.size());
-
+		 */
 		return fileSearchResultList;
 	}
 

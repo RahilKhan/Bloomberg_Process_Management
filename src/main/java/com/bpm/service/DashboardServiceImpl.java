@@ -27,10 +27,10 @@ public class DashboardServiceImpl implements DashboardServiceInf{
 	public List getDashBoardDetails() {
 		System.out.println("DashboardServiceImpl");
 		List<DashboardDetails> dashboardList = dashboardDao.getDashBoardDetails();
-		System.out.println("\t dashboardList.size() : " + dashboardList.size() + "\n\tdashboardList : " + dashboardList.get(0).toString());
+		System.out.println("\t dashboardList.size() : " + dashboardList.size());
 		
 		List<Currency> currencyList = currencyDao.getAllCurrency();
-		System.out.println("\t currencyList.size() : " + currencyList.size() + "\n\t currencyList : " + currencyList.toString());
+		System.out.println("\t currencyList.size() : " + currencyList.size());
 		
 		return dashboardList;
 	}

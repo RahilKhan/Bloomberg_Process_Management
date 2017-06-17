@@ -19,4 +19,6 @@ public interface FileDao {
 	public void updateCurrencyData();
 
 	public List getFileDetails(String searchString);
+
+	int processCsvTempData(String fileName);
 }

@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <h1>Spring 4 MVC - File Upload Example</h1>
-                        <form method="post" action='upload' enctype="multipart/form-data">
+                        <form method="post" action='fileUpload/upload' enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="file1">File Input 1</label>
                                 <input type="file" name="file" id="file1">
@@ -21,7 +21,7 @@
                                 <label for="file2">File Input 2</label>
                                 <input type="file" name="file" id="file2">
                             </div>
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success start">Submit</button>
                         </form>
                     </div>
                 </div>

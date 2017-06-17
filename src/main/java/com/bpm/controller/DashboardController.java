@@ -39,9 +39,6 @@ public class DashboardController {
     	List<DashboardDetails> dashboardBeanList = dashboardService.getDashBoardDetails();
     	response = new Gson().toJson(dashboardBeanList);
     	
-    	System.out.println("\t dashboardBeanList : " + dashboardBeanList.toString() 
-    					 + "\n\t response : " + response);
-    	
     	return response;
 	}
 	

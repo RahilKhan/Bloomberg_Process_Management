@@ -22,8 +22,11 @@ public class FileServiceImpl implements FileServiceInf{
 	@Override
 	public String saveFileToDatabase(String filePath, String fileName) {
 		log.info("\t filePath : " + filePath + "\n\t fileName : " + fileName);
-		System.out.println("FileUploadServiceImpl : saveFileToDatabase \n\t filePath : " + filePath + "\n\t fileName : " + fileName);
+//		System.out.println("FileUploadServiceImpl : saveFileToDatabase \n\t filePath : " + filePath + "\n\t fileName : " + fileName);
 		String response = fileDao.saveFileToDatabase(filePath, fileName);
+		int intResponse = fileDao.processCsvTempData(fileName);
+		System.out.println("\t response : " + response + "\n\t intResponse : " + intResponse);
+		fileDao.updateCurrencyData();
 		return response;
 	}
 
