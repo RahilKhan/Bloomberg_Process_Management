@@ -47,8 +47,8 @@ public class FileController {
         if (!files.isEmpty()) {
             try {
                 for (MultipartFile file: files) {
-                    String path = "C:\\ProgramData\\MySQL\\MySQL Server 5.7\\Uploads" + File.separator + file.getOriginalFilename();
-                    
+//                    String path = "C:\\ProgramData\\MySQL\\MySQL Server 5.7\\Uploads" + File.separator + file.getOriginalFilename();
+                    String path = "C:\\Users\\rahikhan\\Downloads\\mockData" + File.separator + file.getOriginalFilename();
                     filePath = path;
                     fileName = file.getOriginalFilename();
                     File destinationFile = new File(path);

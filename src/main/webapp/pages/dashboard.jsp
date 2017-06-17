@@ -153,7 +153,7 @@
 				<div class="col-md-4">
 						<form id="fileUploadForm" method="post" action='fileUpload/upload' enctype="multipart/form-data">
 							<div class="form-group">
-								<input type="file" name="file" id="file1">
+								<input type="file" name="file" id="file1" accept=".csv">
 							</div>
 						<button type="submit" id="Upload" name="Upload" value="Upload" class="btn btn-success start">
 							<i class="icon-upload icon-white"></i> <span>Upload</span>

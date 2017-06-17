@@ -45,23 +45,26 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 	@Override
 	public String saveFileToDatabase(String filePath, String fileName) {
 		log.info("\t filePath : " + filePath + "\n\t fileName : " + fileName);
-		//		System.out.println("FileuploadController : saveFileToDatabase \n\t filePath : " + filePath + "\n\t fileName : " + fileName);
+				System.out.println("FileuploadController : saveFileToDatabase \n\t filePath : " + filePath + "\n\t fileName : " + fileName);
 		String response = "failure";
 
 		Session session = getEntityManager().unwrap(Session.class);
 
-		String csvLoadSql = " LOAD DATA LOCAL INFILE :file " 
+		String csvLoadSql = " LOAD DATA LOCAL INFILE :filePath " 
 				+ " ignore INTO TABLE DEALS_CSV_IMPORT_TEMP CHARACTER SET utf8 FIELDS TERMINATED BY ',' "  
-				+ " LINES TERMINATED BY '\n\r' " 
-				//+ " ESCAPED BY '\\' "
+				+ " LINES TERMINATED BY '\\n' " 
 				+ " IGNORE 1 LINES " 
 				+ " (DEAL_UNIQUE_ID,ORDER_CURR_ISO,RECIPIENT_CURR_ISO,@DEALTIMESTAMP,DEAL_AMT_IN_ORDER_CURR_ISO) "
 				+ " SET DEAL_TIMESTAMP = STR_TO_DATE(@DEALTIMESTAMP, '%m/%d/%Y'); ";
+		
+		System.out.println("\t csvLoadSql : " + csvLoadSql);
 		int recUploadCount = session.createSQLQuery(csvLoadSql)
-				.setString("file", filePath) 
+//				.setParameter("filePath", filePath)
+				.setString("filePath", filePath) 
 				.executeUpdate();	
-
+		System.out.println("\t recUploadCount : " + recUploadCount);
 		/* procdure call to save csv data into database */
+		
 		int booleanCsvProcessResult = session.createSQLQuery("CALL processImportedCsvRecords(:file)")
 				.setParameter("file", fileName) 
 				.executeUpdate();
@@ -70,10 +73,10 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 		if(recUploadCount > 0)
 			response = "success";
 
-
 		updateCurrencyData();
-
-		return response;
+        
+		
+        return response;
 	}
 
 	@Override
