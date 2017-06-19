@@ -55,7 +55,7 @@ public class FileDaoImpl extends AbstractDao<Integer, FileInfo> implements FileD
 				+ " LINES TERMINATED BY '\\n' " 
 				+ " IGNORE 1 LINES " 
 				+ " (DEAL_UNIQUE_ID,ORDER_CURR_ISO,RECIPIENT_CURR_ISO,@DEALTIMESTAMP,DEAL_AMT_IN_ORDER_CURR_ISO,@FILE_NAME) "
-				+ " SET DEAL_TIMESTAMP = STR_TO_DATE(@DEALTIMESTAMP, '%m/%d/%Y'), "
+				+ " SET DEAL_TIMESTAMP = STR_TO_DATE(@DEALTIMESTAMP, '%d/%m/%Y'), "
 				+ " FILE_NAME =:fileName ; ";
 		
 		System.out.println("\t csvLoadSql : " + csvLoadSql);
