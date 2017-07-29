@@ -14,6 +14,8 @@
 		<link href="../resources/css/vendor/bootstrap4/bootstrap.css" rel="stylesheet">
 		<!-- Material Design Bootstrap -->
 		<link href="../resources/css/vendor/bootstrap4/mdb.css" rel="stylesheet">
+		<!-- Custom css -->
+		<link href="../resources/css/system/dashboard.css" rel="stylesheet">
 	
 	</head>
 	
@@ -23,13 +25,27 @@
 	
 			<!--Navbar-->
 			<nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
-				<!-- <div class="container"> -->
-					<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapseEx2" aria-controls="collapseEx2" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#collapseEx2" aria-controls="collapseEx2" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="container">
+				<!-- <div class="container"> 
+					<button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#collapseEx2" aria-controls="collapseEx2" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
+					-->
+					
 					<a class="navbar-brand" href="#">
+						<img alt="" class="logo img-fluid rounded float-left" src="../resources/images/brandLogo.jpg">
+                    </a>
+
+					<!-- 
+					<img alt="Brand logo" class="logo img-fluid rounded float-left" src="../resources/images/brandLogo.jpg">
+					<a class="navbar-brand" href="#">
+						<img alt="" class="img-fluid rounded float-left" src="../resources/images/brandLogo.jpg">
 					<strong>Navbar</strong>
 					</a>
+					 -->
 					<div class="collapse navbar-collapse" id="collapseEx2">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
@@ -50,10 +66,23 @@
 								</div>
 							</li>
 						</ul>
+						
 						<form class="form-inline waves-effect waves-light">
 							<input class="form-control" placeholder="Search" type="text">
 						</form>
+			            <!--Navigation icons-->
+			            <ul class="nav-icons navbar-nav">
+			                <li><a href="#" class=" waves-effect waves-light navbar_color" data-toggle="modal" data-target="#modal-contact"><i class="fa fa-envelope-o"></i><br><span>Contact</span></a></li>
+			                <li><a href="#" class=" waves-effect waves-light navbar_color"><i class="fa fa-comments-o"></i><br><span>Support</span></a></li>
+			                <li data-toggle="modal" data-target="#modal-login navbar_color"><a href="#" class=" waves-effect waves-light"><i class="fa fa-sign-in"></i><br><span>LogIn</span></a></li>
+			                <li><a href="#" class=" waves-effect waves-light navbar_color"><i class="fa fa-sign-out"></i><br><span>LogOut</span></a></li>
+			                <li><a href="#" class=" waves-effect waves-light navbar_color"><i class="fa fa-user"></i><br><span>Account</span></a></li>
+			                <li><a href="#cart-modal-ex" data-toggle="modal" class=" waves-effect waves-light navbar_color"><i class="fa fa-shopping-cart"></i><br><span>Cart</span></a>
+			                </li><span class="nav-counter" style="color:red">5</span>
+			            </ul>
+
 					</div>
+				</div>
 				<!-- </div> -->
 			</nav>	
 			<!--/.Navbar-->
@@ -279,13 +308,13 @@
 		
 		<!-- Local Repository -->
 		<!-- jQuery -->
-		<script type ="text/javascript" src="resources/javascript/vendor/jquery3/jquery-3.1.1.js"></script>
+		<script type ="text/javascript" src="../resources/javascript/vendor/jquery3/jquery-3.1.1.js"></script>
 		<!-- Bootstrap tooltips -->
-		<script type ="text/javascript" src="resources/javascript/vendor/bootstrap4/tether.min.js"></script>
+		<script type ="text/javascript" src="../resources/javascript/vendor/bootstrap4/tether.min.js"></script>
 		<!-- Bootstrap Core JavaScript -->
-		<script type ="text/javascript" src="resources/javascript/vendor/bootstrap4/bootstrap.min.js"></script>	
+		<script type ="text/javascript" src="../resources/javascript/vendor/bootstrap4/bootstrap.min.js"></script>	
 		<!-- MDB core JavaScript -->
-		<script type ="text/javascript" src="resources/javascript/vendor/bootstrap4/mdb.min.js"></script>	
+		<script type ="text/javascript" src="../resources/javascript/vendor/bootstrap4/mdb.min.js"></script>	
 		<!-- Local Repository -->
 		
 	</body>
