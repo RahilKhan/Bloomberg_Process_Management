@@ -66,11 +66,28 @@
 								</div>
 							</li>
 						</ul>
-						
+						<form class="form-inline waves-effect waves-light">
+							<input class="form-control" placeholder="Search" type="text">
+							<!--Navigation icons-->
+							<ul class="nav-icons navbar-nav mr-auto">
+								<li><a href="#" class=" waves-effect waves-light navbar_color">
+								    	<i class="fa fa-user"></i><br><span>Account</span>
+								    </a>
+								</li>
+								<li><a href="#cart-modal-ex" data-toggle="modal" class=" waves-effect waves-light navbar_color">
+										<i class="fa fa-shopping-cart"></i>
+										<br>
+										<span>Cart</span>
+									</a>
+								</li>
+								<span class="nav-counter">5</span>
+							</ul>
+						</form>
+<!--						
 						<form class="form-inline waves-effect waves-light">
 							<input class="form-control" placeholder="Search" type="text">
 						</form>
-			            <!--Navigation icons-->
+			            
 			            <ul class="nav-icons navbar-nav">
 			                <li><a href="#" class=" waves-effect waves-light navbar_color" data-toggle="modal" data-target="#modal-contact"><i class="fa fa-envelope-o"></i><br><span>Contact</span></a></li>
 			                <li><a href="#" class=" waves-effect waves-light navbar_color"><i class="fa fa-comments-o"></i><br><span>Support</span></a></li>
@@ -79,9 +96,10 @@
 			                <li><a href="#" class=" waves-effect waves-light navbar_color"><i class="fa fa-user"></i><br><span>Account</span></a></li>
 			                <li><a href="#cart-modal-ex" data-toggle="modal" class=" waves-effect waves-light navbar_color"><i class="fa fa-shopping-cart"></i><br><span>Cart</span></a>
 			                </li><span class="nav-counter" style="color:red">5</span>
-			            </ul>
+ -->			            </ul>
 
 					</div>
+				
 				</div>
 				<!-- </div> -->
 			</nav>	
